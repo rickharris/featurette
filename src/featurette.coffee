@@ -21,16 +21,18 @@ class Featurette
 
       throw "Unknown featurette #{featurette}" unless klass
 
-      # Set up the automatic id for the element
       id = element.id
-      if not id? or id is ""
-        id = "featurette-#{@featurettes_counter}"
-        element.id = id
+      unless @featurettes[id]?
 
-      obj = new klass(element)
+        # Set up the automatic id for the element
+        if not id? or id is ""
+          id = "featurette-#{@featurettes_counter}"
+          element.id = id
 
-      @featurettes[id] = obj
-      @featurettes_counter += 1
+        obj = new klass(element)
+
+        @featurettes[id] = obj
+        @featurettes_counter += 1
 
   # Returns the featurette object attached to this element
   @get: (id) ->

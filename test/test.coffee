@@ -28,8 +28,11 @@ asyncTest "loading a page loads and executes featurettes", ->
   frameTest "simple.html", (frame) ->
     equal(frame.jQuery("h1").text(), "¡Ay, caramba!")
 
-test "executing a featurette load a second time on a page skips already loaded featurettes", ->
-  ok(true, "TODO")
+asyncTest "executing a featurette load a second time on a page skips already loaded featurettes", ->
+  frameTest "simple.html", (frame) ->
+    frame.Featurette.load()
+    # if it were loaded again it would have double exclamation points
+    equal(frame.jQuery("h1").text(), "¡Ay, caramba!")
 
 test "loading up featurette with a different match class works", ->
   ok(true, "TODO")
