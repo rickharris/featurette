@@ -28,6 +28,10 @@ asyncTest "loading a page loads and executes featurettes", ->
   frameTest "simple.html", (frame) ->
     equal(frame.jQuery("h1").text(), "¡Ay, caramba!")
 
+asyncTest "featurettes with no id are given an id", ->
+  frameTest "simple.html", (frame) ->
+    equal(frame.jQuery("h1")[0].id, "featurette-0")
+
 asyncTest "executing a featurette load a second time on a page skips already loaded featurettes", ->
   frameTest "simple.html", (frame) ->
     frame.Featurette.load()
@@ -37,5 +41,3 @@ asyncTest "executing a featurette load a second time on a page skips already loa
 test "loading up featurette with a different match class works", ->
   ok(true, "TODO")
 
-test "featurettes with no id are given an id", ->
-  ok(true, "TODO")
