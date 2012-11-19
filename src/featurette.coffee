@@ -1,5 +1,5 @@
 class Featurette
-  @version = "1.1.0"
+  @version = "1.2.0"
 
   @registered_features = {}
   @featurettes = {}
@@ -7,10 +7,14 @@ class Featurette
 
   # Registers a new featurette.
   @register: (name, klass) ->
-    @registered_features[name] = klass
+    if @registered_features[name]?
+      false
+    else
+      @registered_features[name] = klass
+      true
 
   @load: (matchClass = "featurette") ->
-    for element in @getElementsByClass(matchClass)
+    for element in $(".#{matchClass}")
       featurette = element.getAttribute("data-featurette")
 
       klass = @registered_features[featurette]
@@ -32,24 +36,4 @@ class Featurette
   @get: (id) ->
     @featurettes[id]
 
-  # Our quick and dirty getElementsByClass implementation for those
-  # browsers that don't support it
-  #
-  # Basically just a coffeescriptification of Dustin Diaz's getElementsByClass
-  # http://www.dustindiaz.com/getelementsbyclass
-  @getElementsByClass: (className) ->
-    if document.getElementsByClassName
-      classElements = document.getElementsByClassName(className)
-    else
-      classElements = new Array()
-      elements = document.getElementsByTagName("*")
-      pattern = new RegExp("(^|\\s)"+className+"(\\s|$)")
-      for element in elements
-        if pattern.test(element.className)
-          classElements.push(element)
-
-    classElements
-
 window.Featurette = Featurette
-
-

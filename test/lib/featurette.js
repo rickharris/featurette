@@ -5,7 +5,7 @@
 
     function Featurette() {}
 
-    Featurette.version = "1.1.0";
+    Featurette.version = "1.2.0";
 
     Featurette.registered_features = {};
 
@@ -14,13 +14,18 @@
     Featurette.featurettes_counter = 0;
 
     Featurette.register = function(name, klass) {
-      return this.registered_features[name] = klass;
+      if (this.registered_features[name] != null) {
+        return false;
+      } else {
+        this.registered_features[name] = klass;
+        return true;
+      }
     };
 
     Featurette.load = function(matchClass) {
       var element, featurette, id, klass, obj, _i, _len, _ref, _results;
       if (matchClass == null) matchClass = "featurette";
-      _ref = this.getElementsByClass(matchClass);
+      _ref = $("." + matchClass);
       _results = [];
       for (_i = 0, _len = _ref.length; _i < _len; _i++) {
         element = _ref[_i];
@@ -41,22 +46,6 @@
 
     Featurette.get = function(id) {
       return this.featurettes[id];
-    };
-
-    Featurette.getElementsByClass = function(className) {
-      var classElements, element, elements, pattern, _i, _len;
-      if (document.getElementsByClassName) {
-        classElements = document.getElementsByClassName(className);
-      } else {
-        classElements = new Array();
-        elements = document.getElementsByTagName("*");
-        pattern = new RegExp("(^|\\s)" + className + "(\\s|$)");
-        for (_i = 0, _len = elements.length; _i < _len; _i++) {
-          element = elements[_i];
-          if (pattern.test(element.className)) classElements.push(element);
-        }
-      }
-      return classElements;
     };
 
     return Featurette;

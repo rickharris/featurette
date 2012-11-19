@@ -8,7 +8,6 @@ task 'build', 'Build project from src/*.coffee to lib/*.js', ->
     throw err if err
     console.log stdout + stderr
 
-  exec 'cp lib/featurette.js test/featurette.js', (err, stdout, stderr) ->
+  exec 'cp lib/featurette.js test/lib/featurette.js', (err, stdout, stderr) ->
     throw err if err
     console.log stdout + stderr
-

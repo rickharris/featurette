@@ -1,44 +1,38 @@
-# Adds cool exclamation marks to whatever element it's on.
-class Exclamation
-  constructor: (element) ->
-    $element = $(element)
-    newText = "&iexcl;#{$element.text()}!"
-    $element.html(newText)
+# Testing method for firing off a test against a frame
+frameTest = (path, callback) ->
+  run = true
+  $("#test-frame").load () ->
+    if run
+      callback(window.frames[0])
+      $("#test-frame").unbind
+      start()
+    run = false
 
-Featurette.register("exclamation", Exclamation)
+  $("#test-frame").attr("src", "fixtures/#{path}")
 
-# This is kind of a dumb example that makes all the characters
-# in the given element show up as different colors
-class Rainbowify
-  constructor: (element) ->
-    text = $(element).text()
+# Dumb featurette
+class Dummy
+  constructor: () ->
+    "blah"
 
-    buffer = ""
-    colors = ["red", "orange", "yellow", "green", "blue", "indigo", "violete"]
-    for letter, i in text
-      buffer += """
-        <span style="color: #{colors[i % colors.length]};">#{letter}</span>
-      """
+asyncTest "featurettes should be registered", ->
+  frameTest "simple.html", (frame) ->
+    ok(frame.Featurette.registered_features.exclamation)
+    ok(frame.Featurette.registered_features.rainbowify)
 
-    $(element).html(buffer)
+asyncTest "duplicate featurettes shouldn't be able to be registered", ->
+  frameTest "simple.html", (frame) ->
+    equal(frame.Featurette.register("exclamation", Dummy), false)
 
-Featurette.register("rainbowify", Rainbowify)
+asyncTest "loading a page loads and executes featurettes", ->
+  frameTest "simple.html", (frame) ->
+    equal(frame.jQuery("h1").text(), "¡Ay, caramba!")
 
+test "executing a featurette load a second time on a page skips already loaded featurettes", ->
+  ok(true, "TODO")
 
-class SeeMore
-  constructor: (element) ->
-    @id = element.id
+test "loading up featurette with a different match class works", ->
+  ok(true, "TODO")
 
-    $element = $(element)
-    @seeMoreSection = $element.attr("data-target")
-
-    $element.click (e) =>
-      @toggle()
-
-  toggle: ->
-    $(@seeMoreSection).toggle()
-
-Featurette.register("see-more", SeeMore)
-
-$ ->
-  Featurette.load()
+test "featurettes with no id are given an id", ->
+  ok(true, "TODO")
