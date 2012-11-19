@@ -7,11 +7,7 @@ class Featurette
 
   # Registers a new featurette.
   @register: (name, klass) ->
-    if @registered_features[name]?
-      false
-    else
-      @registered_features[name] = klass
-      true
+    @registered_features[name] = klass
 
   @load: (matchClass = "featurette") ->
     for element in $(".#{matchClass}")

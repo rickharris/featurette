@@ -20,10 +20,6 @@ asyncTest "featurettes should be registered", ->
     ok(frame.Featurette.registered_features.exclamation)
     ok(frame.Featurette.registered_features.rainbowify)
 
-asyncTest "duplicate featurettes shouldn't be able to be registered", ->
-  frameTest "simple.html", (frame) ->
-    equal(frame.Featurette.register("exclamation", Dummy), false)
-
 asyncTest "loading a page loads and executes featurettes", ->
   frameTest "simple.html", (frame) ->
     equal(frame.jQuery("h1").text(), "¡Ay, caramba!")
