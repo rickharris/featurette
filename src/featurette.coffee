@@ -9,7 +9,7 @@ class Featurette
   @register: (name, klass) ->
     @registered_features[name] = klass
 
-  @load: (matchClass = "featurette") ->
+  @load: ->
     for element in document.querySelectorAll("[data-featurette]")
       featurette = element.getAttribute("data-featurette")
 
