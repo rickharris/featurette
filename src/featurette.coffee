@@ -10,7 +10,7 @@ class Featurette
     @registered_features[name] = klass
 
   @load: (matchClass = "featurette") ->
-    for element in $(".#{matchClass}")
+    for element in document.querySelectorAll("[data-featurette]")
       featurette = element.getAttribute("data-featurette")
 
       klass = @registered_features[featurette]
