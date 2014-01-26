@@ -1,0 +1,20 @@
+{
+  "name": "featurette",
+  "version": "1.0.0",
+  "homepage": "https://github.com/commondream/featurette",
+  "authors": [
+    "Alan Johnson <alan@commondream.net>"
+  ],
+  "description": "The easiest way to enhance DOM elements.",
+  "main": "./lib/featurette.js",
+  "license": "MIT",
+  "ignore": [
+    "spec",
+    "src",
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
