@@ -52,23 +52,11 @@ Featurette with jQuery:
   $(function() { Featurette.load(); });
 ```
 
-You can also call `Featurette.load` with a parameter for a class name
-you'd like Featurette to match against instead of the `featurette`
-class. So, for example, `Featurette.load("so-rad")` would match all
-elements have the class `so-rad` on them and try to load features based
-on those elements `data-featurette` attribute.
-
 Now let's attach that `exclamation` feature to the `h1` tag:
 
 ```html
-<h1 class="featurette" data-featurette="exclamation">Hola</h1>
+<h1 data-featurette="exclamation">Hola</h1>
 ```
-
-Featurette requires you to dirty your html up a bit, but the benefit of 
-not having to add scripts to your document to
-attach features makes it well worth the added markup. On our element we
-add the `featurette` class. Featurette uses that class to find all
-elements that it needs to attach to.
 
 The `data-featurette` attribute on the `h1` tells Featurette what
 feature to instantiate. So, when the document loads Featurette will
@@ -83,16 +71,10 @@ When you attach a feature to an element it's given an id if it doesn't
 already have one. You can use `Featurette.get("id")` to access the feature attached to
 an element with the passed id.
 
-Example Usage
------
-
-You can see a full example of using Featurette in the `test/test.html`
-sample page.
-
 License
 ----
 
-Copyright (c) 2012 Alan Johnson
+Copyright (c) 2013 Alan Johnson
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
