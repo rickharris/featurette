@@ -1,0 +1,16 @@
+Changelog
+---
+
+2.0.2 2014-01-26
+
+* Removes unneeded parameter for `Featurette.load`
+
+2.0.1 2014-01-25
+
+* Removed unneeded files from bower package.
+
+2.0.0 2014-01-25
+
+* Removed dependency on jQuery.
+* Removed need for featurette class on featurette elements.
+* New test suite.
