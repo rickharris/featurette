@@ -1,6 +1,6 @@
 {
   "name": "featurette",
-  "version": "1.0.0",
+  "version": "2.0.1",
   "homepage": "https://github.com/commondream/featurette",
   "authors": [
     "Alan Johnson <alan@commondream.net>"
@@ -9,6 +9,9 @@
   "main": "./lib/featurette.js",
   "license": "MIT",
   "ignore": [
+    "spec.html",
+    "Cakefile",
+    "lib/jasmine-2.0.0",
     "spec",
     "src",
     "**/.*",
