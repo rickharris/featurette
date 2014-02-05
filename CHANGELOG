@@ -1,6 +1,11 @@
 Changelog
 ---
 
+2.0.3 2014-2-5
+
+* Fixed an issue where featurettes that don't exist would cause featurette to
+  stop loading.
+
 2.0.2 2014-01-26
 
 * Removes unneeded parameter for `Featurette.load`
