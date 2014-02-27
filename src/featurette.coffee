@@ -2,7 +2,6 @@ class Featurette
   @version = "1.2.0"
 
   @registered_features = {}
-  @featurettes = {}
   @featurettes_counter = 0
 
   # Registers a new featurette.
@@ -17,7 +16,7 @@ class Featurette
 
       if klass
         id = element.id
-        unless @featurettes[id]?
+        unless element.featurette
 
           # Set up the automatic id for the element
           if not id? or id is ""
@@ -26,7 +25,7 @@ class Featurette
 
           obj = new klass(element)
 
-          @featurettes[id] = obj
+          element.featurette = obj
           @featurettes_counter += 1
       else
         if window.console
@@ -34,6 +33,6 @@ class Featurette
 
   # Returns the featurette object attached to this element
   @get: (id) ->
-    @featurettes[id]
+    document.getElementById(id).featurette
 
 window.Featurette = Featurette
