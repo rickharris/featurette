@@ -33,6 +33,6 @@ class Featurette
 
   # Returns the featurette object attached to this element
   @get: (id) ->
-    document.getElementById(id).featurette
+    document.getElementById(id)?.featurette
 
 window.Featurette = Featurette
