@@ -25,6 +25,8 @@ class Featurette
           id = "featurette-#{@featurettes_counter}"
           element.id = id
 
+        @featurettes[id] = 'Currently being instantiated...'
+
         obj = new klass(element)
 
         @featurettes[id] = obj
