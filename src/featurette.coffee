@@ -9,14 +9,18 @@ class Featurette
     @registered_features[name] = klass
 
   @load: ->
-    for element in document.querySelectorAll("[data-featurette]")
+    elements = document.querySelectorAll("[data-featurette]")
+
+    element.featuretteLoading = true for element in elements
+
+    for element in elements
       featurette = element.getAttribute("data-featurette")
 
       klass = @registered_features[featurette]
 
       if klass
         id = element.id
-        unless element.featurette
+        if not element.featurette and not element.featuretteLoading
 
           # Set up the automatic id for the element
           if not id? or id is ""
