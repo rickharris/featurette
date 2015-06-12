@@ -30,3 +30,7 @@ describe "Featurette", ->
     it "loads unloaded featurettes", ->
       element = document.getElementById("so-cool")
       expect(element.innerHTML).toEqual("So cool!")
+
+  describe "calling Featurette.load inside a featurette's constructor", ->
+    it "doesn't make the world implode", ->
+      expect(Featurette.get('boom')).toBeDefined()

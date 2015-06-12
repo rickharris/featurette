@@ -2,7 +2,6 @@ class Featurette
   @version = "1.2.0"
 
   @registered_features = {}
-  @featurettes = {}
   @featurettes_counter = 0
 
   # Registers a new featurette.
@@ -10,15 +9,22 @@ class Featurette
     @registered_features[name] = klass
 
   @load: ->
-    for element in document.querySelectorAll("[data-featurette]")
+    elementsNeedingLoad = document.querySelectorAll("[data-featurette]")
+    elements = []
+
+    # filter the element list to elements that aren't already being loaded
+    for element in elementsNeedingLoad
+      unless element.featuretteLoading or element.featurette
+          elements.push(element)
+          element.featuretteLoading = true
+
+    for element in elements
       featurette = element.getAttribute("data-featurette")
 
       klass = @registered_features[featurette]
 
-      throw "Unknown featurette #{featurette}" unless klass
-
-      id = element.id
-      unless @featurettes[id]?
+      if klass
+        id = element.id
 
         # Set up the automatic id for the element
         if not id? or id is ""
@@ -27,11 +33,14 @@ class Featurette
 
         obj = new klass(element)
 
-        @featurettes[id] = obj
+        element.featurette = obj
         @featurettes_counter += 1
+      else
+        if window.console
+            console.log "Unknown featurette #{featurette}"
 
   # Returns the featurette object attached to this element
   @get: (id) ->
-    @featurettes[id]
+    document.getElementById(id)?.featurette
 
 window.Featurette = Featurette

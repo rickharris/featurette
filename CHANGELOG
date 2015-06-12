@@ -1,0 +1,31 @@
+Changelog
+---
+
+2.1.0 2014-03-31
+
+* Featurette.get is now implemented in a way that allows garbage collection
+  on removed DOM elements. Featurettes are now attached directly to the DOM
+  rather than being stored in a collection in the `Featurette` class.
+* Fixed an issue where calling `Featurette.load` within a featurette constructor
+  would cause infinite recursion.
+* Super special thanks to [Rick Harris](https://github.com/rickharris) for his
+  help on this release.
+
+2.0.3 2014-02-05
+
+* Fixed an issue where featurettes that don't exist would cause featurette to
+  stop loading.
+
+2.0.2 2014-01-26
+
+* Removes unneeded parameter for `Featurette.load`
+
+2.0.1 2014-01-25
+
+* Removed unneeded files from bower package.
+
+2.0.0 2014-01-25
+
+* Removed dependency on jQuery.
+* Removed need for featurette class on featurette elements.
+* New test suite.
